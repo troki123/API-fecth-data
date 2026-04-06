@@ -1,10 +1,12 @@
 async function loadNews() 
 {
-    const summaryDiv = document.getElementById("articles");
+    const query = document.getElementById("query").value;
+    const articlesDiv = document.getElementById("articles");
+
 
     try {
         // comunicates with program.py and turns the python code into js code
-        const res = await fetch("http://127.0.0.1:5000/news-summary");
+        const res = await fetch(`http://127.0.0.1:5000/news-summary?q=${query}`);
         const data = await res.json();
 
         // shows articles under div with articles id
