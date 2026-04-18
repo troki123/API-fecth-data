@@ -2,23 +2,11 @@ from flask import Flask, jsonify
 import requests
 import os
 from dotenv import load_dotenv
-from google import genai
 from flask import request # imports requests
 
 load_dotenv()
 
 app = Flask(__name__)
-
-# Creates a client that connects to the google gemini api
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
-# Function sends a prompt to google gemini api to test if the api key is working correctly
-def test_gemini():
-    response = client.models.generate_content(
-        model = "gemini-2.0-flash",
-        contents = "Summarize this text..."
-    )
-    return response.text
 
 # Function retrieves news articles from newspapi based on user provided search query
 # Requests are sent to newsapi endpoint and returns a list of matching articles
